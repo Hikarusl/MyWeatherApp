@@ -181,7 +181,7 @@ svg * {
 }
 @font-face {
   font-family: "Nato Sans";
-  src: url("../fonts/NotoSans-Regular.woff2") format("woff2");
+  src: url("./fonts/NotoSans-Regular.woff2") format("woff2");
   font-style: normal;
   font-size: 400;
   font-display: swap;
@@ -400,7 +400,7 @@ button[aria-label]::before {
 
 .picture-info__box {
   padding: 30px;
-  background: center/cover no-repeat url("../../images/bg.jpg");
+  background: center/cover no-repeat url("./images/bg.jpg");
   border-radius: var(--border-radius);
   box-shadow: var(--shadow);
   display: flex;
