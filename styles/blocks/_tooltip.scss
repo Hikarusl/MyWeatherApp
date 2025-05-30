@@ -1,0 +1,25 @@
+@use '../helpers/' as *;
+
+.tooltip {
+  @include square(rem(60));
+  position: relative;
+
+  &__text {
+    visibility: hidden;
+    width: 120px;
+    background: var(--color-blue);
+    color: var(--color-light);
+    text-align: center;
+    padding: 5px;
+    border-radius: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 50%;
+    left: 200%;
+    transform: translateX(-50%);
+  }
+
+  &:hover .tooltip__text {
+    visibility: visible;
+  }
+}

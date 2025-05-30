@@ -1,0 +1,15 @@
+@use 'normalyse';
+@use 'fonts';
+@use 'variables';
+@use 'utils';
+@use 'globals';
+
+@use './blocks/tooltip';
+@use './blocks/header';
+@use './blocks/picture-info';
+
+@use './blocks/day-info';
+@use './blocks/long-info';
+@use './blocks/diagram';
+@use './blocks/week';
+@use './blocks/main-data'
