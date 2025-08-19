@@ -1,0 +1,28 @@
+.diagram {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  &__title {
+    padding-left: 30px;
+    color: var(--color-blue);
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.diagram__image .line {
+  stroke: var(--color-blue) !important;
+  fill: none !important;
+
+}
+
+.temp-label {
+  text-anchor: middle;
+  fill: var(--color-blue);
+  font-size: 14px;
+  pointer-events: none;
+}

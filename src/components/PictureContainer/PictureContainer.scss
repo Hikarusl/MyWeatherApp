@@ -1,0 +1,32 @@
+@use '../../styles/helpers' as *;
+
+.picture-info {
+
+  &__box {
+    padding: 30px;
+    background: center / cover no-repeat
+    url("../../assets/images/bg.jpg");
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+
+    display: flex;
+    justify-content: space-between;
+    color: var(--color-light)
+  }
+
+  &__left, &__right{
+    display: grid;
+    row-gap: rem(10);
+    align-content: end;
+  }
+
+  &__temperature {
+    font-size: rem(60);
+    font-weight: 700;
+  }
+
+  &__place, &__date {
+    font-size: rem(30);
+  }
+
+}
