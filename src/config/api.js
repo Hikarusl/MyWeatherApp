@@ -6,7 +6,8 @@ export const API_CONFIG = {
   },
   openMeteo: {
     baseUrl: "https://api.open-meteo.com/v1/forecast",
+    lastUrl: "daily=weather_code,temperature_2m_max&hourly=temperature_2m,rain,apparent_temperature&current=temperature_2m,rain,weather_code,wind_speed_10m",
     params:
-      "daily=weather_code,temperature_2m_max&hourly=temperature_2m,rain,apparent_temperature&current=temperature_2m,rain,weather_code,wind_speed_10m",
+      "daily=weather_code,temperature_2m_max,sunrise,sunset,uv_index_max&hourly=temperature_2m,rain&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&forecast_hours=24&temporal_resolution=hourly_3",
   },
 };

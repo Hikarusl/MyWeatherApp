@@ -1,10 +1,9 @@
 import './WeatherStatsGrid.scss'
 
-const WeatherStatsGrid = ({ className,
-                            humidity,
-                            sunrise,
-                            sunset,
-                            uvIndex}) => {
+const WeatherStatsGrid = ({ className, currentData: {humidity,
+  sunrise,
+  sunset,
+  uvIndex}}) => {
   return (
     <dl className={`weather ${className}`}>
       <div className="weather-detail">
@@ -29,7 +28,7 @@ const WeatherStatsGrid = ({ className,
             className="weather-detail__value"
             aria-label="Влажность 65 процентов"
           >
-            <span className="value">65</span>
+            <span className="value">{humidity}</span>
             <span className="unit">%</span>
           </dd>
       </div>
@@ -52,7 +51,7 @@ const WeatherStatsGrid = ({ className,
             className="weather-detail__value"
             aria-label="Восход в 6 часов 45 минут"
           >
-            <time dateTime="06:45">06:45</time>
+            <time>{sunrise}</time>
           </dd>
         </div>
       <div className="weather-detail">
@@ -87,8 +86,8 @@ const WeatherStatsGrid = ({ className,
             className="weather-detail__value"
             aria-label="UV индекс 5, умеренный"
           >
-            <span className="value">5</span>
-            <span className="unit"> (умеренный)</span>
+            <span className="value">{Math.round(Number(uvIndex))}</span>
+            <span className="unit">{` (${getUvIndexDescription(uvIndex)})`}</span>
           </dd>
         </div>
       <div className="weather-detail">
@@ -110,11 +109,29 @@ const WeatherStatsGrid = ({ className,
             className="weather-detail__value"
             aria-label="Закат в 20 часов 30 минут"
           >
-            <time dateTime="20:30">20:30</time>
+            <time>{sunset}</time>
           </dd>
         </div>
     </dl>
   )
 }
 
+function getUvIndexDescription(uvIndex) {
+  const index = Number(uvIndex)
+  switch (true) {
+    case (index <= 2):
+      return "низкий";
+    case (index > 2 && index <= 5):
+      return "умеренный";
+    case (index > 5 && index <= 8):
+      return "высокий";
+    case (index > 8 && index < 10):
+      return "очень высокий";
+    default:
+      return "экстремальный";
+  }
+}
+
 export default WeatherStatsGrid
+
+

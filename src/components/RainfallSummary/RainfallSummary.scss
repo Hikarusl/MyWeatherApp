@@ -8,9 +8,9 @@
 .climate-stats {
   height: 100%;
   color: var(--color-light);
-  display: grid;
-  grid-template-columns: 1fr auto;
+  display: flex;
   gap: 1.5rem;
+  justify-content: space-between;
   align-items: baseline; // Изменено с start на baseline
   position: relative;
 
@@ -23,16 +23,8 @@
       font-weight: 500;
       margin-bottom: auto;
       align-self: flex-start;
+      font-size: rem(22);
 
-    }
-
-    &:nth-child(1) {
-      .climate-stat__label {
-        font-size: rem(30);
-      }
-      .climate-stat__value {
-        font-size: rem(25);
-      }
     }
 
     // Добавляем стили для второго элемента

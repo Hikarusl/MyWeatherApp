@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import {fetchCoordinates} from "../services/opencage.js";
 import {fetchWeather} from "../services/openmeteo.js";
+import {adaptWeatherData} from "../services/weatherAdapter.js";
 
 export function useWeather(city) {
   const [data, setData] = useState(null);
@@ -16,14 +17,13 @@ export function useWeather(city) {
         setError(null);
 
         const { lat, lon, cityName } = await fetchCoordinates(city);
-        const weatherData = await fetchWeather(lat, lon);
+        const apiResponse = await fetchWeather(lat, lon);
 
-        setData({
-          city: cityName,
-          lat,
-          lon,
-          ...weatherData,
-        });
+        // Адаптация здесь
+        const normalizedData = adaptWeatherData(apiResponse, cityName, lat, lon);
+
+        setData(normalizedData);
+
       } catch (err) {
         setError(err.message || "Неизвестная ошибка");
       } finally {

@@ -1,27 +1,27 @@
 import './RainfallSummary.scss'
 
-const RainfallSummary = ({className}) => {
+const RainfallSummary = ({className, currentData: {wind, precipitation}}) => {
 
   return (
     <div className={`rainfall-summary ${className}`}>
       <dl className="climate-stats">
         <div className="climate-stat">
           <dt className="climate-stat__label">
-            Осадки за месяц
+            Уровень осадков
           </dt>
           <dd className="climate-stat__value">
-            <span className="number">45</span>
+            <span className="number">{precipitation}</span>
             <span className="unit">мм</span>
           </dd>
         </div>
 
         <div className="climate-stat">
           <dt className="climate-stat__label">
-            В этом году
+            Скорость ветра
           </dt>
           <dd className="climate-stat__value">
-            <span className="number">+17</span>
-            <span className="unit">%</span>
+            <span className="number">{wind}</span>
+            <span className="unit">м/с</span>
           </dd>
         </div>
       </dl>

@@ -2,123 +2,104 @@ import './ForecastDiagram.scss'
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-export default function ForecastDiagram({ className, temps=[] }) {
+export default function ForecastDiagram({ className, hourlyData }) {
   const svgRef = useRef(null);
-  const wrapperRef = useRef(null);
-  const currentTemps = temps.length? temps.filter((_, index) => (index + 1) % 3 === 0).slice(0,9):
-    [17, 18, 35, 23, 23, 16, 9, 8, 5]
 
   useEffect(() => {
-    function drawDiagram() {
-      const svg = d3.select(svgRef.current);
-      svg.selectAll("*").remove(); // очистка перед перерисовкой
+    if (!hourlyData || hourlyData.length === 0) return;
 
-      const containerWidth = wrapperRef.current.clientWidth;
-      const width = containerWidth;
-      const height = 250;
-      const marginTop = 20;
-      const marginRight = 20;
-      const marginBottom = 30;
-      const marginLeft = 15;
+    const svg = d3.select(svgRef.current);
+    svg.selectAll("*").remove();
 
-      const tempData = currentTemps.map((temp, i) => ({
-        time: i * 3,
-        temp: Math.round(+temp),
-      }));
+    const width = 600;   // виртуальная ширина
+    const height = 250;
+    const margin = { top: 20, right: 20, bottom: 30, left: 30 };
 
-      // шкалы
-      const x = d3.scaleLinear()
-        .domain(d3.extent(tempData, (d) => d.time))
-        .range([marginLeft, width - marginRight]);
+    // шкалы
+    const x = d3.scalePoint()
+      .domain(hourlyData.map(d => d.time))
+      .range([margin.left, width - margin.right]);
 
-      const y = d3.scaleLinear()
-        .domain([d3.min(tempData, (d) => d.temp) - 1, d3.max(tempData, (d) => d.temp) + 1])
-        .range([height - marginBottom, marginTop]);
+    const y = d3.scaleLinear()
+      .domain([
+        d3.min(hourlyData, d => d.temperature) - 1,
+        d3.max(hourlyData, d => d.temperature) + 1,
+      ])
+      .range([height - margin.bottom, margin.top]);
 
-      // линия
-      const line = d3.line()
-        .x((d) => x(d.time))
-        .y((d) => y(d.temp))
-        .curve(d3.curveMonotoneX);
+    // линия и область
+    const line = d3.line()
+      .x(d => x(d.time))
+      .y(d => y(d.temperature))
+      .curve(d3.curveMonotoneX);
 
-      svg.attr("width", width)
-        .attr("height", height)
-        .attr("viewBox", [0, 0, width, height])
-        .attr("style", "max-width: 100%; height: auto;");
+    const area = d3.area()
+      .x(d => x(d.time))
+      .y0(height - margin.bottom)
+      .y1(d => y(d.temperature))
+      .curve(d3.curveMonotoneX);
 
-      // ось X
-      const tickValues = d3.range(0, 25, 3);
-      svg.append("g")
-        .attr("transform", `translate(0,${height - marginBottom})`)
-        .call(
-          d3.axisBottom(x)
-            .tickValues(tickValues)
-            .tickFormat((d) => d + ":00")
-            .tickSize(0)
-            .tickSizeOuter(0)
-        )
-        .selectAll(".tick text")
-        .attr("fill", "#696b9b")
-        .style("font-size", "13px");
-      svg.selectAll(".domain").remove();
+    // градиент
+    const defs = svg.append("defs");
+    const gradient = defs.append("linearGradient")
+      .attr("id", "area-gradient")
+      .attr("x1", "0%").attr("y1", "0%")
+      .attr("x2", "0%").attr("y2", "100%");
+    gradient.append("stop").attr("offset", "0%").attr("stop-color", "#696b9b").attr("stop-opacity", 0.7);
+    gradient.append("stop").attr("offset", "100%").attr("stop-color", "#696b9b").attr("stop-opacity", 0);
 
-      const g = svg.append("g");
+    const g = svg.append("g");
 
-      // линия
-      g.append("path")
-        .datum(tempData)
-        .attr("class", "line")
-        .attr("d", line);
+    // область
+    g.append("path")
+      .datum(hourlyData)
+      .attr("class", "area")
+      .attr("d", area)
+      .style("fill", "url(#area-gradient)");
 
-      // подписи температуры
-      g.selectAll(".temp-label")
-        .data(tempData)
-        .enter()
-        .append("text")
-        .attr("class", "temp-label")
-        .attr("x", (d) => x(d.time))
-        .attr("y", (d) => y(d.temp) - 10)
-        .text((d) => `${d.temp}°`);
+    // линия
+    g.append("path")
+      .datum(hourlyData)
+      .attr("class", "line")
+      .attr("d", line);
 
-      // градиент
-      svg.append("defs").append("linearGradient")
-        .attr("id", "area-gradient")
-        .attr("x1", "0%").attr("y1", "0%")
-        .attr("x2", "0%").attr("y2", "100%")
-        .selectAll("stop")
-        .data([
-          { offset: "0%", color: "#696b9b", opacity: 0.7 },
-          { offset: "100%", color: "#696b9b", opacity: 0 },
-        ])
-        .enter().append("stop")
-        .attr("offset", (d) => d.offset)
-        .attr("stop-color", (d) => d.color)
-        .attr("stop-opacity", (d) => d.opacity);
+    // подписи температуры
+    g.selectAll(".temp-label")
+      .data(hourlyData)
+      .enter()
+      .append("text")
+      .attr("class", "temp-label")
+      .attr("x", d => x(d.time))
+      .attr("y", d => y(d.temperature) - 10)
+      .text(d => `${d.temperature}°`);
 
-      // область
-      const area = d3.area()
-        .x((d) => x(d.time))
-        .y0(height - marginBottom)
-        .y1((d) => y(d.temp))
-        .curve(d3.curveMonotoneX);
+    // ось X
+    g.append("g")
+      .attr("transform", `translate(0,${height - margin.bottom})`)
+      .call(
+        d3.axisBottom(x)
+          .tickValues(hourlyData.map(d => d.time))
+          .tickSize(0)
+      )
+      .selectAll("text")
+      .attr("fill", "#696b9b")
+      .style("font-size", "13px");
 
-      g.append("path")
-        .datum(tempData)
-        .attr("class", "area")
-        .attr("d", area)
-        .style("fill", "url(#area-gradient)");
-    }
+    g.select(".domain").remove();
 
-    drawDiagram();
 
-    window.addEventListener("resize", drawDiagram);
-    return () => window.removeEventListener("resize", drawDiagram);
-  }, [currentTemps]);
+  }, [hourlyData]);
 
   return (
-    <div ref={wrapperRef} className={`diagram ${className}`}>
+    <div className={`diagram ${className}`}>
       <h4 className="diagram__title">Температура в течение дня</h4>
-      <svg ref={svgRef} className="diagram__image"></svg>
+      <svg
+        ref={svgRef}
+        className="diagram__image"
+        viewBox="0 0 600 250"
+        preserveAspectRatio="none"
+        style={{ width: "100%", height: "auto" }}
+      />
     </div>
   );
 }

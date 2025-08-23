@@ -1,20 +1,18 @@
 import './PictureContainer.scss'
 import ForecastIcon from "../ForecastIcon/ForecastIcon.jsx";
 
-export default function PictureContainer( { temperature = 13,
-                                            location = "Санкт-Петербург",
-                                            time = "2025-11-15T12:00:00Z",
-                                            code}) {
+export default function PictureContainer({ location,
+                                           currentData: {temp, weather_code, time}}) {
   return (
     <section className="picture-info container">
       <h2 className="visually-hidden">Погода сегодня</h2>
       <div className="picture-info__box ">
         <div className="picture-info__left">
           <ForecastIcon
-            code={code}
+            code={weather_code}
           ></ForecastIcon>
           <div className="picture-info__temperature">
-            <span className="number">{Math.round(temperature)}</span>
+            <span className="number">{Math.round(temp)}</span>
             <span className="unit">°C</span>
           </div>
           <div

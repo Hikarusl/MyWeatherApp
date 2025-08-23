@@ -34,31 +34,25 @@ function App() {
         {data &&  (
           <>
             <PictureContainer
-              temperature={data.current.temperature_2m}
+              currentData={data.current}
               location={data.city}
-              time={data.current.time}
-              code={data.current.weather_code}
             />
             <DataBody>
               <WeatherStatsGrid
                 className="weather-data__stats"
-                humidity={1}
-                sunrise={1}
-                sunset={1}
-                uvIndex={1}
+                currentData={data.current}
               />
               <ForecastDiagram
                 className="weather-data__hourly"
-                temps={data.hourly.temperature_2m}
+                hourlyData={data.hourly}
               />
               <RainfallSummary
                 className="weather-data__rainfall"
+                currentData={data.current}
               />
               <WeeklyForecastStrip
                 className="weather-data__weekly"
-                date={data.current.time}
-                temps={data.daily.temperature_2m_max}
-                codes={data.daily.weather_code}
+                weekData={data.week}
               />
             </DataBody>
           </>
