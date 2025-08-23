@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import Header from "./components/Header/Header";
 import PictureContainer
   from "./components/PictureContainer/PictureContainer";
@@ -10,21 +11,62 @@ import WeeklyForecastStrip
 import RainfallSummary from "./components/RainfallSummary/RainfallSummary.jsx";
 import ForecastDiagram
   from "./components/ForecastDiagram/ForecastDiagram.jsx";
+import {useWeather} from "./hooks/useWeather.js";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [city, setCity] = useState('Санкт-Петербург')
+  const { data, loading, error } = useWeather(city);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const value = e.target.elements.city.value.trim();
+    if (value) setCity(value);
+  };
 
   return (
     <>
-      <Header></Header>
+      <Header>
+        <SearchBar handleSearch={handleSearch}></SearchBar>
+      </Header>
       <main>
-        <PictureContainer></PictureContainer>
-        <DataBody>
-          <WeatherStatsGrid className="weather-data__stats " />
-          <ForecastDiagram className="weather-data__hourly" />
-          <RainfallSummary className="weather-data__rainfall" />
-          <WeeklyForecastStrip className="weather-data__weekly" />
-        </DataBody>
+        {loading && <p>Загрузка...</p>}
+        {error && <p style={{ color: "red" }}>{error}</p>}
+        {data &&  (
+          <>
+            <PictureContainer
+              temperature={data.current.temperature_2m}
+              location={data.city}
+              time={data.current.time}
+              code={data.current.weather_code}
+            />
+            <DataBody>
+              <WeatherStatsGrid
+                className="weather-data__stats"
+                humidity={1}
+                sunrise={1}
+                sunset={1}
+                uvIndex={1}
+              />
+              <ForecastDiagram
+                className="weather-data__hourly"
+                temps={data.hourly.temperature_2m}
+              />
+              <RainfallSummary
+                className="weather-data__rainfall"
+              />
+              <WeeklyForecastStrip
+                className="weather-data__weekly"
+                date={data.current.time}
+                temps={data.daily.temperature_2m_max}
+                codes={data.daily.weather_code}
+              />
+            </DataBody>
+          </>
+        )}
+
+
+
+
       </main>
     </>
   )

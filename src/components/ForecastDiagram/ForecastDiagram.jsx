@@ -2,9 +2,11 @@ import './ForecastDiagram.scss'
 import { useEffect, useRef } from "react";
 import * as d3 from "d3";
 
-export default function ForecastDiagram({ className, temps }) {
+export default function ForecastDiagram({ className, temps=[] }) {
   const svgRef = useRef(null);
   const wrapperRef = useRef(null);
+  const currentTemps = temps.length? temps.filter((_, index) => (index + 1) % 3 === 0).slice(0,9):
+    [17, 18, 35, 23, 23, 16, 9, 8, 5]
 
   useEffect(() => {
     function drawDiagram() {
@@ -15,11 +17,11 @@ export default function ForecastDiagram({ className, temps }) {
       const width = containerWidth;
       const height = 250;
       const marginTop = 20;
-      const marginRight = 15;
+      const marginRight = 20;
       const marginBottom = 30;
       const marginLeft = 15;
 
-      const tempData = (temps || [17, 18, 35, 23, 23, 16, 9, 8, 5]).map((temp, i) => ({
+      const tempData = currentTemps.map((temp, i) => ({
         time: i * 3,
         temp: Math.round(+temp),
       }));
@@ -111,7 +113,7 @@ export default function ForecastDiagram({ className, temps }) {
 
     window.addEventListener("resize", drawDiagram);
     return () => window.removeEventListener("resize", drawDiagram);
-  }, [temps]);
+  }, [currentTemps]);
 
   return (
     <div ref={wrapperRef} className={`diagram ${className}`}>

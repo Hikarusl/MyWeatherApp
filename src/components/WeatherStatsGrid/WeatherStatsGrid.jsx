@@ -1,6 +1,10 @@
 import './WeatherStatsGrid.scss'
 
-const WeatherStatsGrid = ({ className }) => {
+const WeatherStatsGrid = ({ className,
+                            humidity,
+                            sunrise,
+                            sunset,
+                            uvIndex}) => {
   return (
     <dl className={`weather ${className}`}>
       <div className="weather-detail">

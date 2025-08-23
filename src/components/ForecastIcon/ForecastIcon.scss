@@ -3,6 +3,7 @@
 .forecast-icon {
   @include square(rem(60));
   position: relative;
+  display: inline-block;
 
   &__text {
     visibility: hidden;
@@ -17,9 +18,9 @@
     bottom: 50%;
     left: 200%;
     transform: translateX(-50%);
+  }
 
-    &:hover {
-      visibility: visible;
-    }
+  &:hover &__text {
+    visibility: visible;
   }
 }

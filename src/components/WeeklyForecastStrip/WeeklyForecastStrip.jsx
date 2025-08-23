@@ -1,44 +1,21 @@
 import './WeeklyForecastStrip.scss'
 import ForecastIcon from "../ForecastIcon/ForecastIcon.jsx";
 
-const WeeklyForecastStrip = ({className}) => {
-  const weekData = [
-    {
-      day: 'ПН',
-      weather: 'cloudy',
-      temperature: 12
-    },
-    {
-      day: 'ВТ',
-      weather: 'rainy',
-      temperature: 10
-    },
-    {
-      day: 'СР',
-      weather: 'sunny',
-      temperature: 18
-    },
-    {
-      day: 'ЧТ',
-      weather: 'partly-cloudy',
-      temperature: 15
-    },
-    {
-      day: 'ПТ',
-      weather: 'cloudy',
-      temperature: 14
-    },
-    {
-      day: 'СБ',
-      weather: 'sunny',
-      temperature: 20
-    },
-    {
-      day: 'ВС',
-      weather: 'rainy',
-      temperature: 11
-    },
-  ];
+
+const days = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"];
+
+const WeeklyForecastStrip = ({className,
+                             date,
+                             temps,
+                             codes}) => {
+  const d = (new Date(date)).getDay();
+  const weekData = temps.map((temp, i) => {
+      return {
+        day: days[(d+i)%7],
+        temperature: Math.round(temp),
+        code: codes[i]
+      }
+  })
 
   return (
     <ul className={`week ${className}`}>
@@ -46,9 +23,7 @@ const WeeklyForecastStrip = ({className}) => {
         <li className="week__item" key={data.day}>
           <h4 className="week__day">{data.day}</h4>
           <ForecastIcon
-            image='cloudy.svg'
-            tooltip='Облачно'
-            addClass='day-0'
+            code={data.code}
           ></ForecastIcon>
           <div className="week__temp">
             {data.temperature} °C

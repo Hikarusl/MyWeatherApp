@@ -1,13 +1,16 @@
 import './ForecastIcon.scss'
+import weatherCodes from "../../assets/data/weather-codes.json";
 
-const ForecastIcon = ({image, tooltip, addClass}) => {
+const ForecastIcon = ({code, addClass=''}) => {
+  const weather = weatherCodes[code]
   return (
     <div className={`forecast-icon ${addClass}`}>
       <img
-        src="/src/assets/images/cloudy.svg"
-        alt="cloudy"
+        className="forecast-icon__img"
+        src={weather.image}
+        alt={weather.description}
       />
-      <span className="forecast-icon__text">{tooltip}</span>
+      <span className="forecast-icon__text">{weather.description}</span>
     </div>
   )
 }
