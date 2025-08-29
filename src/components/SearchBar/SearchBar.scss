@@ -1,7 +1,8 @@
+@use '../../styles/media' as *;
+
 .search {
-  &-form {
+  &__form {
     display: flex;
-    max-width: 400px;
     border-radius: var(--border-radius);
     overflow: hidden;
     box-shadow: var(--shadow);
@@ -12,7 +13,7 @@
     }
   }
 
-  &-input {
+  &__input {
     flex-grow: 1;
     padding: 1rem 1.5rem;
     border: none;
@@ -27,11 +28,12 @@
     }
   }
 
-  &-button {
+  &__button {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
+    width: 3rem;
+
     background-color: var(--color-search);
     border: none;
     cursor: pointer;
@@ -47,16 +49,20 @@
       background-color: var(--active-color);
       transform: scale(0.98);
     }
+
+    @include mobile {
+      width: 2.5rem;
+    }
   }
 
-  &-icon {
+  &__icon {
     color: white;
     transition: transform 0.3s ease;
   }
 }
 
 
-.search-button:hover .search-icon {
+.search__button:hover .search__icon {
   transform: scale(1.1);
 }
 
@@ -66,6 +72,6 @@
   100% { transform: scale(1); }
 }
 
-.search-form:focus-within .search-icon {
-  animation: pulse 1s infinite;
+.search__form:focus-within .search__icon {
+  animation: pulse 2s infinite;
 }

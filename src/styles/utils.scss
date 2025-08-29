@@ -11,7 +11,8 @@
 }
 
 .container {
-  max-width: calc(var(--container-width) + var(--container-padding-x)*2);
+  width: 100%;
+  max-width: 1300px;
   margin-inline: auto;
   padding-block: 20px;
   padding-inline: var(--container-padding-x);

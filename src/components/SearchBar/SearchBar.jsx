@@ -4,7 +4,7 @@ function SearchBar({handleSearch}) {
   return (
     <>
       <form
-        className="search-form"
+        className="search__form"
         role="search"
         aria-label="City search"
         onSubmit={handleSearch}
@@ -16,20 +16,18 @@ function SearchBar({handleSearch}) {
         </label>
         <input
           type="search"
-          className="search-input"
+          className="search__input"
           placeholder="Введите свой город..."
           name="city"
-          // value={city}
-          // onChange={(e) => setCity(e.target.value)}
         />
         <button
           type="submit"
-          className="search-button"
+          className="search__button"
           aria-label="Search"
 
         >
           <svg
-            className="search-icon"
+            className="search__icon"
             xmlns="http://www.w3.org/2000/svg"
             x="0px"
             y="0px"

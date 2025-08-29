@@ -1,4 +1,5 @@
 @use '../../styles/helpers' as *;
+@use '../../styles/media' as *;
 
 .picture-info {
 
@@ -11,7 +12,16 @@
 
     display: flex;
     justify-content: space-between;
-    color: var(--color-light)
+    gap: rem(20);
+    color: var(--color-light);
+
+    @include mobile {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 0px;
+      padding: 15px;
+    }
+
   }
 
   &__left, &__right{
@@ -21,12 +31,12 @@
   }
 
   &__temperature {
-    font-size: rem(60);
+    font-size: fluid(60, 30);
     font-weight: 700;
   }
 
   &__place, &__date {
-    font-size: rem(30);
+    font-size: fluid(30, 20);
   }
 
 }

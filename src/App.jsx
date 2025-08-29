@@ -25,9 +25,7 @@ function App() {
 
   return (
     <>
-      <Header>
-        <SearchBar handleSearch={handleSearch}></SearchBar>
-      </Header>
+      <Header handleSearch={handleSearch}></Header>
       <main>
         {loading && <p>Загрузка...</p>}
         {error && <p style={{ color: "red" }}>{error}</p>}
@@ -57,10 +55,6 @@ function App() {
             </DataBody>
           </>
         )}
-
-
-
-
       </main>
     </>
   )

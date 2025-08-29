@@ -1,11 +1,12 @@
 import './Header.scss'
+import SearchBar from "../SearchBar/SearchBar.jsx";
 
-const Header = ({children}) => {
+const Header = ({handleSearch}) => {
   return (
     <header className="header container">
       <h1 className="header__title h2">MyWeatherApp</h1>
       <div className="header__search">
-        {children}
+        <SearchBar handleSearch={handleSearch}></SearchBar>
       </div>
     </header>
   )
