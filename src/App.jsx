@@ -11,6 +11,7 @@ import RainfallSummary from "./components/RainfallSummary/RainfallSummary.jsx";
 import ForecastDiagram
   from "./components/ForecastDiagram/ForecastDiagram.jsx";
 import {useWeather} from "./hooks/useWeather.js";
+import Loader from "./components/Loader/Loader.jsx";
 
 function App() {
   const [city, setCity] = useState('Санкт-Петербург')
@@ -26,7 +27,7 @@ function App() {
     <>
       <Header handleSearch={handleSearch}></Header>
       <main>
-        {loading && <p>Загрузка...</p>}
+        {loading && <Loader/>}
         {error && <p style={{ color: "red" }}>{error}</p>}
         {data &&  (
           <>
