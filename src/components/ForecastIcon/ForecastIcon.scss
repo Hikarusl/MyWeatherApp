@@ -1,9 +1,9 @@
 @use '../../styles/helpers' as *;
 
 .forecast-icon {
-  @include square(rem(60));
   position: relative;
-  display: inline-block;
+  display: block;
+  justify-content: center;
 
   &__text {
     visibility: hidden;

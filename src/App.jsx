@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import SearchBar from "./components/SearchBar/SearchBar.jsx";
 import Header from "./components/Header/Header";
 import PictureContainer
   from "./components/PictureContainer/PictureContainer";
@@ -37,19 +36,19 @@ function App() {
             />
             <DataBody>
               <WeatherStatsGrid
-                className="weather-data__stats"
+                className="weather-card weather-data__stats"
                 currentData={data.current}
               />
               <ForecastDiagram
-                className="weather-data__hourly"
+                className="weather-card weather-data__hourly"
                 hourlyData={data.hourly}
               />
               <RainfallSummary
-                className="weather-data__rainfall"
+                className="weather-card weather-card--gradient weather-data__rainfall"
                 currentData={data.current}
               />
               <WeeklyForecastStrip
-                className="weather-data__weekly"
+                className="weather-card weather-card--colored weather-data__weekly"
                 weekData={data.week}
               />
             </DataBody>

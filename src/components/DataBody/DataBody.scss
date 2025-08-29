@@ -1,48 +1,45 @@
+@use '../../styles/media' as *;
+
+
 .weather-data {
   &__grid {
     display: grid;
-    grid-template-columns: 1fr 2fr;
     gap: 1.5rem;
-    grid-template-areas:
-      'stats hourly'
-      'rainfall hourly'
-      'weekly weekly';
 
-    @media (max-width: 1024px) {
-      grid-template-columns: 1fr;
+    &--weather {
+      grid-template-columns: 1fr 2fr;
       grid-template-areas:
-        'stats'
-        'hourly'
-        'rainfall'
-        'weekly';
+        "stats hourly"
+        "rainfall hourly"
+        "weekly weekly";
+
+      @include tablet {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "stats"
+          "rainfall"
+          "hourly"
+          "weekly";
+        gap: 1rem;
+      }
     }
   }
 
-  &__stats {
-    grid-area: stats;
-  }
+  &__stats    { grid-area: stats; }
+  &__hourly   { grid-area: hourly; }
+  &__rainfall { grid-area: rainfall; }
+  &__weekly   { grid-area: weekly; }
 
-  &__hourly {
-    grid-area: hourly;
-  }
+  .weather-card {
+    --card-bg: white;
 
-  &__rainfall {
-    grid-area: rainfall;
-  }
-
-  &__weekly {
-    grid-area: weekly;
-  }
-
-  &__stats,
-  &__hourly,
-  &__rainfall,
-  &__weekly {
-    border: var(--border);
+//    max-width: 100%;
+//    overflow: hidden;
     padding: 2rem;
+    border: var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    background: white;
+    background: var(--card-bg);
 
     transition: transform 0.2s, box-shadow 0.2s;
 
@@ -50,5 +47,22 @@
       transform: translateY(-2px);
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
+
+    @include mobile {
+      padding: 1rem;
+    }
+
+    &--gradient {
+      --card-bg: linear-gradient(.25turn, var(--color-purpur), var(--color-blue));
+    }
+
+    &--colored {
+      --card-bg: var(--color-purpur);
+    }
   }
 }
+
+//.weather-card * {
+//  max-width: 100%;
+//}
+

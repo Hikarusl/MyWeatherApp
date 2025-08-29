@@ -1,17 +1,12 @@
 @use '../../styles/helpers' as *;
 
-.rainfall-summary {
-  background: linear-gradient(.25turn, var(--color-purpur), var(--color-blue));
-
-}
-
 .climate-stats {
   height: 100%;
   color: var(--color-light);
   display: flex;
   gap: 1.5rem;
   justify-content: space-between;
-  align-items: baseline; // Изменено с start на baseline
+  align-items: baseline;
   position: relative;
 
   .climate-stat {
@@ -23,11 +18,10 @@
       font-weight: 500;
       margin-bottom: auto;
       align-self: flex-start;
-      font-size: rem(22);
+      font-size: fluid(25, 14);
 
     }
 
-    // Добавляем стили для второго элемента
     &:nth-child(2) {
       .climate-stat__value {
         position: absolute;

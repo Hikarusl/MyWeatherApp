@@ -15,6 +15,7 @@
 
   &__input {
     flex-grow: 1;
+    min-width: 0;
     padding: 1rem 1.5rem;
     border: none;
     font-size: 1rem;
@@ -32,7 +33,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 3rem;
+    width: max(3rem, 45px);
 
     background-color: var(--color-search);
     border: none;

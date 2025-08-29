@@ -6,6 +6,7 @@ const WeatherStatsGrid = ({ className, currentData: {humidity,
   uvIndex}}) => {
   return (
     <dl className={`weather ${className}`}>
+      <h3 className="visually-hidden">Статистика дня</h3>
       <div className="weather-detail">
           <svg
             className="weather-detail__icon"

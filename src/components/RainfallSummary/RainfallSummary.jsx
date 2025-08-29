@@ -4,6 +4,7 @@ const RainfallSummary = ({className, currentData: {wind, precipitation}}) => {
 
   return (
     <div className={`rainfall-summary ${className}`}>
+      <h3 className="visually-hidden">Информация о влажности и ветре</h3>
       <dl className="climate-stats">
         <div className="climate-stat">
           <dt className="climate-stat__label">

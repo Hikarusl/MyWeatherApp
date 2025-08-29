@@ -1,17 +1,16 @@
 @use '../../styles/helpers' as *;
+@use '../../styles/media' as *;
 
 .week {
-  background-color: var(--color-purpur);
-  height: 100%;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
 
   &__item {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-inline: rem(35);
+    align-content: center;
 
     &:not(:last-child) {
       border-right: var(--border);
@@ -25,5 +24,6 @@
 
   &__temp {
     text-align: center;
+    font-size: fluid(20, 10);
   }
 }

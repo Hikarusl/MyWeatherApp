@@ -1,17 +1,18 @@
+@use '../../styles/helpers' as *;
+
 .diagram {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   &__title {
-//    padding-left: 30px;
     font-weight: 500;
-    font-size: 25px;
+    font-size: fluid(25, 14);
     color: var(--color-blue);
   }
 
   &__image {
-    width: 100%;
+    max-width: 100%;
     height: auto;
   }
 }
@@ -19,7 +20,11 @@
 .diagram__image .line {
   stroke: var(--color-blue) !important;
   fill: none !important;
+}
 
+.diagram__image .area {
+  stroke: none;
+  fill: url(#area-gradient);
 }
 
 .temp-label {
