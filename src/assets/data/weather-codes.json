@@ -248,24 +248,24 @@
     "description": "Умеренный снег"
   },
   "61": {
-    "image": "./icons/heavy-snow.png",
-    "description": "Сильный снег"
+    "image": "./icons/showers.png",
+    "description": "Небольшой дождь"
   },
   "62": {
     "image": "./icons/snow.png",
     "description": "Лёгкая снежная крупа"
   },
   "63": {
-    "image": "./icons/snow.png",
-    "description": "Умеренная снежная крупа"
+    "image": "./icons/showers.png",
+    "description": "Дождь"
   },
   "64": {
     "image": "./icons/heavy-snow.png",
     "description": "Сильная снежная крупа"
   },
   "65": {
-    "image": "./icons/sleet.png",
-    "description": "Лёгкий град"
+    "image": "./icons/heavy-showers.png",
+    "description": "Сильный дождь"
   },
   "66": {
     "image": "./icons/sleet.png",
@@ -297,15 +297,15 @@
   },
   "73": {
     "image": "./icons/snow.png",
-    "description": "Лёгкая ледяная крупа"
+    "description": "Небольшой снег"
   },
   "74": {
     "image": "./icons/snow.png",
-    "description": "Умеренная ледяная крупа"
+    "description": "Умеренный снег"
   },
   "75": {
     "image": "./icons/heavy-snow.png",
-    "description": "Сильная ледяная крупа"
+    "description": "Сильный снегопад"
   },
   "76": {
     "image": "./icons/snow.png",
@@ -313,7 +313,7 @@
   },
   "77": {
     "image": "./icons/snow.png",
-    "description": "Снежные зёрна"
+    "description": "Град"
   },
   "78": {
     "image": "./icons/snow.png",
