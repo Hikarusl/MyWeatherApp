@@ -1,6 +1,3 @@
-import { DotLottieReact } from '@lottiefiles/dotlottie-react';
-
-
 const Loader = () => {
     return (
     <div className="loading"

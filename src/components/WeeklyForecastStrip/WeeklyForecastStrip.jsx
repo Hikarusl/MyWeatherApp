@@ -2,7 +2,6 @@ import './WeeklyForecastStrip.scss'
 import ForecastIcon from "../ForecastIcon/ForecastIcon.jsx";
 
 const WeeklyForecastStrip = ({className, weekData}) => {
-  console.log(document.documentElement.clientWidth)
   return (
     <>
       <h3 className="visually-hidden">Погода на неделю</h3>

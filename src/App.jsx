@@ -12,6 +12,7 @@ import ForecastDiagram
   from "./components/ForecastDiagram/ForecastDiagram.jsx";
 import {useWeather} from "./hooks/useWeather.js";
 import Loader from "./components/Loader/Loader.jsx";
+import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
 
 function App() {
   const [city, setCity] = useState('Санкт-Петербург')
@@ -28,7 +29,7 @@ function App() {
       <Header handleSearch={handleSearch}></Header>
       <main>
         {loading && <Loader/>}
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <ErrorMessage message={error} />}
         {data &&  (
           <>
             <PictureContainer

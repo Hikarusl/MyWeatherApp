@@ -1,0 +1,22 @@
+@use '../../styles/helpers' as *;
+
+.error-message {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+
+  border-radius: var(--border-radius);
+  background-color: #ffecec;
+  color: #d9534f;
+  font-size: fluid(26, 12);
+  box-shadow: var(--shadow);
+
+  &__icon {
+    font-size: 1.2rem;
+  }
+
+  &__text {
+    line-height: 1.4;
+  }
+}
