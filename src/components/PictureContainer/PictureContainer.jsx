@@ -1,46 +1,39 @@
-import './PictureContainer.scss'
-import ForecastIcon from "../ForecastIcon/ForecastIcon.jsx";
+import './PictureContainer.scss';
+import ForecastIcon from '../ForecastIcon/ForecastIcon.jsx';
 
-export default function PictureContainer({ location,
-                                           currentData: {temp, weather_code, time}}) {
+export default function PictureContainer({
+  location,
+  currentData: { temp, weather_code, time },
+}) {
   return (
     <section className="picture-info container">
       <h2 className="visually-hidden">Погода сегодня</h2>
       <div className="picture-info__box ">
         <div className="picture-info__left">
-          <ForecastIcon
-            code={weather_code}
-          ></ForecastIcon>
+          <ForecastIcon code={weather_code} />
           <div className="picture-info__temperature">
             <span className="number">{Math.round(temp)}</span>
             <span className="unit">°C</span>
           </div>
-          <div
-            className="picture-info__place"
-          >
-            {formatCityName(location)}
-          </div>
+          <div className="picture-info__place">{formatCityName(location)}</div>
         </div>
         <div className="picture-info__right">
           <div className="picture-info__date">
-            <time
-              dateTime="2025-11-15"
-              className="current-date"
-            >
+            <time dateTime="2025-11-15" className="current-date">
               {formatDate(new Date(time))}
             </time>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function formatDate(date) {
   return new Intl.DateTimeFormat('ru', {
     weekday: 'long',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
   }).format(date);
 }
 

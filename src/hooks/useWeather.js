@@ -1,7 +1,7 @@
-import { useState, useEffect } from "react";
-import {fetchCoordinates} from "../services/opencage.js";
-import {fetchWeather} from "../services/openmeteo.js";
-import {adaptWeatherData} from "../services/weatherAdapter.js";
+import { useState, useEffect } from 'react';
+import { fetchCoordinates } from '../services/opencage.js';
+import { fetchWeather } from '../services/openmeteo.js';
+import { adaptWeatherData } from '../services/weatherAdapter.js';
 
 export function useWeather(city) {
   const [data, setData] = useState(null);
@@ -19,13 +19,11 @@ export function useWeather(city) {
         const { lat, lon, cityName } = await fetchCoordinates(city);
         const apiResponse = await fetchWeather(lat, lon);
 
-        // Адаптация здесь
-        const normalizedData = adaptWeatherData(apiResponse, cityName, lat, lon);
+        const normalizedData = adaptWeatherData(apiResponse, cityName);
 
         setData(normalizedData);
-
       } catch (err) {
-        setError(err.message || "Неизвестная ошибка");
+        setError(err.message || 'Неизвестная ошибка');
       } finally {
         setLoading(false);
       }
@@ -34,5 +32,5 @@ export function useWeather(city) {
     loadWeather();
   }, [city]);
 
-  return {data, loading, error};
+  return { data, loading, error };
 }

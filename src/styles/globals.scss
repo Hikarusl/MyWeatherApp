@@ -7,9 +7,9 @@ html {
 }
 
 body {
-  font-size:  fluid(18, 14);
+  font-size: fluid(18, 14);
   font-family: var(--font-family-base), serif;
-  letter-spacing: -0,03em;
+  letter-spacing: -0, 03em;
   color: var(--color-dark);
   background-color: var(--color-light-pur);
 
@@ -17,44 +17,51 @@ body {
   flex-direction: column;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3{
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3 {
   color: var(--color-light);
   font-weight: 700;
 }
 
-h1, .h1 {
-  font-size:  fluid(70, 30);
+h1,
+.h1 {
+  font-size: fluid(70, 30);
   line-height: 1.2;
 }
 
-h2, .h2 {
-  font-size:  fluid(58, 24);
+h2,
+.h2 {
+  font-size: fluid(58, 24);
   line-height: 1.3;
 }
 
-h3, .h3 {
-  font-size:  fluid(40, 24);
+h3,
+.h3 {
+  font-size: fluid(40, 24);
 }
 
-h4, .h4 {
-  font-size:  fluid(19, 12);
+h4,
+.h4 {
+  font-size: fluid(19, 12);
   font-weight: 700;
 }
 
-a, button,
+a,
+button,
 label,
 input,
 textarea,
 select,
 svg * {
-  transition-duration: var( --transition-duration);
+  transition-duration: var(--transition-duration);
 }
 
-
 a {
-  color: inherit;  /** наследуем от body */
+  color: inherit; /** наследуем от body */
 
   // @include hover {
   //     color: var(--color-accent);
@@ -76,7 +83,7 @@ button {
   &[aria-label] {
     position: relative;
 
-    &::before{
+    &::before {
       @include abs-center;
       @include square(rem(44));
 

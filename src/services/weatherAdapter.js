@@ -1,8 +1,7 @@
-const WEEK_DAYS = ["ВС", "ПН", "ВТ", "СР", "ЧТ", "ПТ", "СБ"];
+const WEEK_DAYS = ['ВС', 'ПН', 'ВТ', 'СР', 'ЧТ', 'ПТ', 'СБ'];
 
-
-export function adaptWeatherData(apiResponse, cityName, lat, lon) {
-  const TODAY = new Date(apiResponse.current.time).getDay()
+export function adaptWeatherData(apiResponse, cityName) {
+  const TODAY = new Date(apiResponse.current.time).getDay();
 
   return {
     city: cityName,
@@ -19,9 +18,9 @@ export function adaptWeatherData(apiResponse, cityName, lat, lon) {
       sunrise: apiResponse.daily.sunrise[0].split('T')[1],
     },
     week: apiResponse.daily.time.map((date, i) => ({
-      day: WEEK_DAYS[(TODAY+i)%7],
-      weather_code: apiResponse.daily.weather_code[i] ,
-      temperature:  Math.round(+apiResponse.daily.temperature_2m_max[i]),
+      day: WEEK_DAYS[(TODAY + i) % 7],
+      weather_code: apiResponse.daily.weather_code[i],
+      temperature: Math.round(+apiResponse.daily.temperature_2m_max[i]),
     })),
     hourly: apiResponse.hourly.time.map((date, i) => ({
       time: date.split('T')[1],

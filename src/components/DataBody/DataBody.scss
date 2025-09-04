@@ -1,6 +1,5 @@
 @use '../../styles/media' as *;
 
-
 .weather-data {
   &__grid {
     display: grid;
@@ -9,39 +8,49 @@
     &--weather {
       grid-template-columns: 1fr 2fr;
       grid-template-areas:
-        "stats hourly"
-        "rainfall hourly"
-        "weekly weekly";
+        'stats hourly'
+        'rainfall hourly'
+        'weekly weekly';
 
       @include tablet {
         grid-template-columns: 1fr;
         grid-template-areas:
-          "stats"
-          "rainfall"
-          "hourly"
-          "weekly";
+          'stats'
+          'rainfall'
+          'hourly'
+          'weekly';
         gap: 1rem;
       }
     }
   }
 
-  &__stats    { grid-area: stats; }
-  &__hourly   { grid-area: hourly; }
-  &__rainfall { grid-area: rainfall; }
-  &__weekly   { grid-area: weekly; }
+  &__stats {
+    grid-area: stats;
+  }
+  &__hourly {
+    grid-area: hourly;
+  }
+  &__rainfall {
+    grid-area: rainfall;
+  }
+  &__weekly {
+    grid-area: weekly;
+  }
 
   .weather-card {
     --card-bg: white;
 
-//    max-width: 100%;
-//    overflow: hidden;
+    //    max-width: 100%;
+    //    overflow: hidden;
     padding: 2rem;
     border: var(--border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
     background: var(--card-bg);
 
-    transition: transform 0.2s, box-shadow 0.2s;
+    transition:
+      transform 0.2s,
+      box-shadow 0.2s;
 
     &:hover {
       transform: translateY(-2px);
@@ -53,7 +62,11 @@
     }
 
     &--gradient {
-      --card-bg: linear-gradient(.25turn, var(--color-purpur), var(--color-blue));
+      --card-bg: linear-gradient(
+        0.25turn,
+        var(--color-purpur),
+        var(--color-blue)
+      );
     }
 
     &--colored {
@@ -65,4 +78,3 @@
 //.weather-card * {
 //  max-width: 100%;
 //}
-

@@ -1,7 +1,7 @@
-import './WeeklyForecastStrip.scss'
-import ForecastIcon from "../ForecastIcon/ForecastIcon.jsx";
+import './WeeklyForecastStrip.scss';
+import ForecastIcon from '../ForecastIcon/ForecastIcon.jsx';
 
-const WeeklyForecastStrip = ({className, weekData}) => {
+const WeeklyForecastStrip = ({ className, weekData }) => {
   return (
     <>
       <h3 className="visually-hidden">Погода на неделю</h3>
@@ -12,15 +12,13 @@ const WeeklyForecastStrip = ({className, weekData}) => {
             <ForecastIcon
               code={data.weather_code}
               small={document.documentElement.clientWidth <= 700}
-            ></ForecastIcon>
-            <div className="week__temp">
-              {data.temperature} °C
-            </div>
+            />
+            <div className="week__temp">{data.temperature} °C</div>
           </li>
         ))}
       </ul>
     </>
-  )
-}
+  );
+};
 
-export default WeeklyForecastStrip
+export default WeeklyForecastStrip;

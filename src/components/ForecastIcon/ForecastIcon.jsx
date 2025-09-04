@@ -1,9 +1,9 @@
-import './ForecastIcon.scss'
-import weatherCodes from "../../assets/data/weather-codes.json";
+import './ForecastIcon.scss';
+import weatherCodes from '../../assets/data/weather-codes.json';
 
-const ForecastIcon = ({code, addClass='', small=false}) => {
-  const weather = weatherCodes[code]
-  const size = small ? 25 : 60
+const ForecastIcon = ({ code, addClass = '', small = false }) => {
+  const weather = weatherCodes[code];
+  const size = small ? 25 : 60;
   return (
     <div className={`forecast-icon ${addClass}`}>
       <img
@@ -14,7 +14,7 @@ const ForecastIcon = ({code, addClass='', small=false}) => {
       />
       <span className="forecast-icon__text">{weather.description}</span>
     </div>
-  )
-}
+  );
+};
 
-export default ForecastIcon
+export default ForecastIcon;

@@ -2,11 +2,9 @@
 @use '../../styles/media' as *;
 
 .picture-info {
-
   &__box {
     padding: 30px;
-    background: center / cover no-repeat
-    url("../../assets/images/bg.jpg");
+    background: center / cover no-repeat url('../../assets/images/bg.jpg');
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
 
@@ -21,10 +19,10 @@
       gap: 0;
       padding: 15px;
     }
-
   }
 
-  &__left, &__right{
+  &__left,
+  &__right {
     display: grid;
     row-gap: rem(10);
     align-content: end;
@@ -35,8 +33,8 @@
     font-weight: 700;
   }
 
-  &__place, &__date {
+  &__place,
+  &__date {
     font-size: fluid(30, 20);
   }
-
 }

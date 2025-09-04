@@ -1,21 +1,17 @@
-import { useState } from 'react'
-import Header from "./components/Header/Header";
-import PictureContainer
-  from "./components/PictureContainer/PictureContainer";
-import DataBody from "./components/DataBody/DataBody";
-import WeatherStatsGrid
-  from "./components/WeatherStatsGrid/WeatherStatsGrid.jsx";
-import WeeklyForecastStrip
-  from "./components/WeeklyForecastStrip/WeeklyForecastStrip.jsx";
-import RainfallSummary from "./components/RainfallSummary/RainfallSummary.jsx";
-import ForecastDiagram
-  from "./components/ForecastDiagram/ForecastDiagram.jsx";
-import {useWeather} from "./hooks/useWeather.js";
-import Loader from "./components/Loader/Loader.jsx";
-import ErrorMessage from "./components/ErrorMessage/ErrorMessage.jsx";
+import { useState } from 'react';
+import Header from './components/Header/Header';
+import PictureContainer from './components/PictureContainer/PictureContainer';
+import DataBody from './components/DataBody/DataBody';
+import WeatherStatsGrid from './components/WeatherStatsGrid/WeatherStatsGrid.jsx';
+import WeeklyForecastStrip from './components/WeeklyForecastStrip/WeeklyForecastStrip.jsx';
+import RainfallSummary from './components/RainfallSummary/RainfallSummary.jsx';
+import ForecastDiagram from './components/ForecastDiagram/ForecastDiagram.jsx';
+import { useWeather } from './hooks/useWeather.js';
+import Loader from './components/Loader/Loader.jsx';
+import ErrorMessage from './components/ErrorMessage/ErrorMessage.jsx';
 
 function App() {
-  const [city, setCity] = useState('Санкт-Петербург')
+  const [city, setCity] = useState('Санкт-Петербург');
   const { data, loading, error } = useWeather(city);
 
   const handleSearch = (e) => {
@@ -26,16 +22,13 @@ function App() {
 
   return (
     <>
-      <Header handleSearch={handleSearch}></Header>
+      <Header handleSearch={handleSearch} />
       <main>
-        {loading && <Loader/>}
+        {loading && <Loader />}
         {error && <ErrorMessage message={error} />}
-        {data &&  (
+        {data && (
           <>
-            <PictureContainer
-              currentData={data.current}
-              location={data.city}
-            />
+            <PictureContainer currentData={data.current} location={data.city} />
             <DataBody>
               <WeatherStatsGrid
                 className="weather-card weather-data__stats"
@@ -58,7 +51,7 @@ function App() {
         )}
       </main>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

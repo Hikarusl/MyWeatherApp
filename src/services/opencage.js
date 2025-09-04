@@ -1,4 +1,4 @@
-import { API_CONFIG } from "../config/api.js";
+import { API_CONFIG } from '../config/api.js';
 
 export async function fetchCoordinates(city) {
   const res = await fetch(
@@ -7,11 +7,11 @@ export async function fetchCoordinates(city) {
     )}&key=${API_CONFIG.openCage.apiKey}&${API_CONFIG.openCage.params}`
   );
 
-  if (!res.ok) throw new Error("Ошибка при получении координат");
+  if (!res.ok) throw new Error('Ошибка при получении координат');
 
   const data = await res.json();
   if (!data.results || data.results.length === 0) {
-    throw new Error("Город не найден");
+    throw new Error('Город не найден');
   }
 
   const firstResult = data.results[0];

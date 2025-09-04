@@ -20,16 +20,16 @@
     display: grid;
     grid-template-columns: 50px auto;
     grid-template-areas:
-    'icon label'
-    'icon value';
+      'icon label'
+      'icon value';
     align-items: center;
     gap: 3px;
 
     //разделитель
     &:nth-child(even) {
-      border-right: 1px solid #BAAED6;
+      border-right: 1px solid #baaed6;
     }
-    &:nth-child(-n+3) {
+    &:nth-child(-n + 3) {
       padding-bottom: 2rem;
     }
 
